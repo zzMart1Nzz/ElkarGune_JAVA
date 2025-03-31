@@ -5,15 +5,13 @@ import java.sql.Timestamp;
 public class Erreserba {
 
 	private int idErreserba;
-	private int erreserbaZkia;
 	private int idBazkidea;
 	private boolean mota;
 	private Timestamp data;
 
 	//KONSTRUKTOREAK
-	public Erreserba(int idErreserba, int erreserbaZkia, int idBazkidea, boolean mota, Timestamp data) {
+	public Erreserba(int idErreserba, int idBazkidea, boolean mota, Timestamp data) {
 		this.idErreserba = idErreserba;
-		this.erreserbaZkia = erreserbaZkia;
 		this.idBazkidea = idBazkidea;
 		this.mota = mota;
 		this.data = data;
@@ -26,14 +24,6 @@ public class Erreserba {
 
 	public void setIdErreserba(int idErreserba) {
 		this.idErreserba = idErreserba;
-	}
-
-	public int getErreserbaZkia() {
-		return erreserbaZkia;
-	}
-
-	public void setErreserbaZkia(int erreserbaZkia) {
-		this.erreserbaZkia = erreserbaZkia;
 	}
 
 	public int getIdBazkidea() {

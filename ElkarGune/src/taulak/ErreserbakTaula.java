@@ -11,7 +11,7 @@ public class ErreserbakTaula extends AbstractTableModel {
 
     private List<Erreserba> erreserba;
     private String[] columnNames = {
-        "idErreserba", "ErreserbaZkia", "idBazkidea", "Mota", "Data"
+        "idErreserba", "idBazkidea", "Mota", "Data"
     };
 
     public ErreserbakTaula(List<Erreserba> erreserba) {
@@ -33,10 +33,9 @@ public class ErreserbakTaula extends AbstractTableModel {
         Erreserba er = erreserba.get(rowIndex);
         switch (columnIndex) {
             case 0: return er.getIdErreserba();
-            case 1: return er.getErreserbaZkia();
-            case 2: return er.getIdBazkidea();
-            case 3: return er.isMota() ? "Bazkaria" : "Afaria";
-            case 4: return new SimpleDateFormat("yyyy/MM/dd").format(er.getData());
+            case 1: return er.getIdBazkidea();
+            case 2: return er.isMota() ? "Bazkaria" : "Afaria";
+            case 3: return new SimpleDateFormat("yyyy/MM/dd").format(er.getData());
             default: return null;
         }
     }

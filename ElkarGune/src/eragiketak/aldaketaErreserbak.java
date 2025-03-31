@@ -29,7 +29,6 @@ import java.awt.Cursor;
 public class aldaketaErreserbak extends JFrame {
     private JPanel contentPane;
     private static final long serialVersionUID = 1L;
-    private JTextField txt_erreserbaZkia;
     private JTextField txt_idBazkidea;
     private JCheckBox chk_mota;
     private JLabel okIkonoa;
@@ -46,18 +45,6 @@ public class aldaketaErreserbak extends JFrame {
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         setContentPane(contentPane);
         contentPane.setLayout(null);
-
-        txt_erreserbaZkia = new JTextField();
-        txt_erreserbaZkia.setFont(new Font("Tahoma", Font.PLAIN, 14));
-        txt_erreserbaZkia.setColumns(10);
-        txt_erreserbaZkia.setBounds(249, 173, 168, 35);
-        contentPane.add(txt_erreserbaZkia);
-        txt_erreserbaZkia.setText(String.valueOf(erreserba.getErreserbaZkia()));
-
-        JLabel lblErreserbaZkia = new JLabel("ErreserbaZkia:");
-        lblErreserbaZkia.setFont(new Font("Tahoma", Font.BOLD, 20));
-        lblErreserbaZkia.setBounds(249, 150, 168, 20);
-        contentPane.add(lblErreserbaZkia);
 
         txt_idBazkidea = new JTextField();
         txt_idBazkidea.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -112,7 +99,7 @@ public class aldaketaErreserbak extends JFrame {
 
                 if (konfirmazioa == JOptionPane.YES_OPTION) {
                     // Testu-kampoetatik balioak lortu
-                    int erreserbaZkia = Integer.parseInt(txt_erreserbaZkia.getText());
+
                     int idBazkidea = Integer.parseInt(txt_idBazkidea.getText());
                     boolean mota = chk_mota.isSelected();
                   
@@ -120,7 +107,6 @@ public class aldaketaErreserbak extends JFrame {
 
 
                     // Mezua eguneratzea
-                    erreserba.setErreserbaZkia(erreserbaZkia);
                     erreserba.setIdBazkidea(idBazkidea);
                     erreserba.setMota(mota);
 

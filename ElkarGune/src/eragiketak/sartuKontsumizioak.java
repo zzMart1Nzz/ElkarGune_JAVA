@@ -137,7 +137,8 @@ public class sartuKontsumizioak extends JFrame {
                 		    Integer.parseInt(txt_idFaktura.getText()),  
                 		    Integer.parseInt(txt_idProduktua.getText()),  
                 		    Integer.parseInt(txt_kopurua.getText()),  
-                		    Double.parseDouble(txt_prezioa.getText())  
+                		    Double.parseDouble(txt_prezioa.getText()),
+                		    0
                 		);
 
 

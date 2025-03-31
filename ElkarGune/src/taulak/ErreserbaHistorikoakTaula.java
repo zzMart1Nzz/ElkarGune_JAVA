@@ -11,7 +11,7 @@ public class ErreserbaHistorikoakTaula extends AbstractTableModel {
 
     private List<ErreserbaHistorikoa> erreserbHist;
     private String[] columnNames = {
-        "idErreserbaHistorikoa", "ErresebaZkia", "idBazkidea", "Mota", "Data"
+        "idErreserbaHistorikoa", "idBazkidea", "Mota", "Data"
     };
 
     public ErreserbaHistorikoakTaula(List<ErreserbaHistorikoa> erreserbHist) {
@@ -33,10 +33,9 @@ public class ErreserbaHistorikoakTaula extends AbstractTableModel {
         ErreserbaHistorikoa eh = erreserbHist.get(rowIndex);
         switch (columnIndex) {
             case 0: return eh.getIdErreserba();
-            case 1: return eh.getErreserbaZkia();
-            case 2: return eh.getIdBazkidea();
-            case 3: return eh.isMota() ? "Bazkaria": "Afaria";
-            case 4: return new SimpleDateFormat("yyyy/MM/dd").format(eh.getData());
+            case 1: return eh.getIdBazkidea();
+            case 2: return eh.isMota() ? "Bazkaria": "Afaria";
+            case 3: return new SimpleDateFormat("yyyy/MM/dd").format(eh.getData());
             default: return null;
         }
     }

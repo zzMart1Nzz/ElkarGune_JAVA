@@ -8,17 +8,21 @@ public class Fakturak {
 	private int idBazkidea;
 	private int erreserbaZkia;
 	private Timestamp data;
+	private double totala;
 	private String fakturaPDF;
-
+	
 	//KONSTRUKTOREAK
-	public Fakturak(int idFaktura, int idBazkidea, int erreserbaZkia, Timestamp data, String fakturaPDF) {
+	public Fakturak(int idFaktura, int idBazkidea, int erreserbaZkia, Timestamp data, double totala,
+			String fakturaPDF) {
 		this.idFaktura = idFaktura;
 		this.idBazkidea = idBazkidea;
 		this.erreserbaZkia = erreserbaZkia;
 		this.data = data;
+		this.totala = totala;
 		this.fakturaPDF = fakturaPDF;
 	}
-
+	
+	
 	//GETTERRAK ETA SETTERRAK
 	public int getIdFaktura() {
 		return idFaktura;
@@ -52,6 +56,14 @@ public class Fakturak {
 		this.data = data;
 	}
 
+	public double getTotala() {
+		return totala;
+	}
+
+	public void setTotala(double totala) {
+		this.totala = totala;
+	}
+
 	public String getFakturaPDF() {
 		return fakturaPDF;
 	}
@@ -59,5 +71,7 @@ public class Fakturak {
 	public void setFakturaPDF(String fakturaPDF) {
 		this.fakturaPDF = fakturaPDF;
 	}
+	
 
+	
 }

@@ -22,7 +22,6 @@ public class ErresHistPanela extends JFrame {
 	private JPanel contentPane;
 	private JTable table;
 	private kudeaketaErreserbaHistorikoa dao;
-	private JTextField txt_id;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(() -> {
@@ -85,11 +84,6 @@ public class ErresHistPanela extends JFrame {
 			}
 		});
 		contentPane.add(birkargatuIko);
-
-		txt_id = new JTextField();
-		txt_id.setBounds(450, 674, 637, 20);
-		contentPane.add(txt_id);
-		txt_id.setColumns(10);
 				
 				JLabel lblAtzera = new JLabel("");
 				lblAtzera.setBounds(26, 27, 147, 49);

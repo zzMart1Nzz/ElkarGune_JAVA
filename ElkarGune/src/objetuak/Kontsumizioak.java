@@ -10,17 +10,19 @@ public class Kontsumizioak {
 	private int idProduktua;
 	private int kopurua;
 	private double prezioa;
+	private double totala;
 
 
 	//KONSTRUKTOREAK
 	public Kontsumizioak(int idKontsumizioa, int erreserbaZkia, int idFaktura, int idProduktua, int kopurua,
-			double prezioa) {
+			double prezioa, double totala) {
 		this.idKontsumizioa = idKontsumizioa;
 		this.erreserbaZkia = erreserbaZkia;
 		this.idFaktura = idFaktura;
 		this.idProduktua = idProduktua;
 		this.kopurua = kopurua;
 		this.prezioa = prezioa;
+		this.totala = totala;
 
 	}
 
@@ -72,6 +74,16 @@ public class Kontsumizioak {
 
 	public void setPrezioa(double prezioa) {
 		this.prezioa = prezioa;
+	}
+
+
+	public double getTotala() {
+		return totala;
+	}
+
+
+	public void setTotala(double totala) {
+		this.totala = totala;
 	}
 
 

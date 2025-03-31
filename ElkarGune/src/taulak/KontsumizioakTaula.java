@@ -11,7 +11,7 @@ public class KontsumizioakTaula extends AbstractTableModel {
 
     private List<Kontsumizioak> kontsumizioak;
     private String[] columnNames = {
-        "idKontsumizioa", "ErreserbaZkia", "idFaktura", "idBodega", "Kopurua", "Prezioa"
+        "idKontsumizioa", "ErreserbaZkia", "idFaktura", "idBodega", "Kopurua", "Prezioa", "Totala"
     };
 
     public KontsumizioakTaula(List<Kontsumizioak> kontsumizioak) {
@@ -38,6 +38,7 @@ public class KontsumizioakTaula extends AbstractTableModel {
             case 3: return ko.getIdProduktua();
             case 4: return ko.getKopurua();
             case 5: return ko.getPrezioa();
+            case 6: return ko.getTotala();
             default: return null;
         }
     }

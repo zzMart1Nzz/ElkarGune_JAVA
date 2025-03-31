@@ -15,7 +15,7 @@ public class kudeaketaKontsumizioak {
     public List<Kontsumizioak> lortuKontsumizioak() {
         List<Kontsumizioak> lista = new ArrayList<>();
         String sql = "SELECT idKontsumizioa, erreserbaZkia, idFaktura, idProduktua," +
-        			 "kopurua, prezioa " +
+        			 "kopurua, prezioa, totala " +
                      "FROM kontsumizioak ORDER BY idKontsumizioa ASC";
 
         try (Connection conn = DBKonexioa.konexioaEgin();
@@ -39,7 +39,8 @@ public class kudeaketaKontsumizioak {
             rs.getInt("idFaktura"),
             rs.getInt("idProduktua"),
             rs.getInt("kopurua"),
-            rs.getDouble("prezioa")
+            rs.getDouble("prezioa"),
+            rs.getDouble("totala")
             );
     }
 

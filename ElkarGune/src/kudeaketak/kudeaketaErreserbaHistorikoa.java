@@ -14,7 +14,7 @@ public class kudeaketaErreserbaHistorikoa {
 
     public List<ErreserbaHistorikoa> lortuErreserbaElementua() {
         List<ErreserbaHistorikoa> lista = new ArrayList<>();
-        String sql = "SELECT idErreserba, erreserbaZkia, idBazkidea, mota, data " +
+        String sql = "SELECT idErreserba, idBazkidea, mota, data " +
                 "FROM erreserba " +
                 "WHERE DATE(data) < CURDATE() " +
                 "ORDER BY idErreserba ASC";
@@ -36,7 +36,6 @@ public class kudeaketaErreserbaHistorikoa {
     private ErreserbaHistorikoa mapResultSetToErreserbaElementua(ResultSet rs) throws SQLException {
         return new ErreserbaHistorikoa(
             rs.getInt("idErreserba"),
-            rs.getInt("erreserbaZkia"),
             rs.getInt("idBazkidea"),
             rs.getBoolean("mota"),
             rs.getTimestamp("data")
