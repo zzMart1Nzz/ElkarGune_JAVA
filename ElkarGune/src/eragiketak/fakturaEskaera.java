@@ -20,22 +20,22 @@ import metodoak.DBKonexioa;
 
 public class fakturaEskaera {
 
-    public void sortuFaktura(int eskaera) {
+    public void sortuFaktura(int fakturaZenbakia) {
         String fraZkia = "";
-        int bezeroaId = 0;
+        int idBazkidea = 0;
         double totala = 0.0;
 
         // Datos del cliente
         String nanEdoNif = "", izena = "", abizena = "", helbidea = "", herria = "", postaKodea = "";
         // Obtener datos de la factura
-        String sqlEskaera = "SELECT idFaktura, idBazkidea, totala FROM faktura WHERE idFaktura = ?";
+        String sqlEskaera = "SELECT idFaktura, idBazkidea, totala FROM fakturak WHERE idFaktura = ?";
         try (Connection conn = DBKonexioa.konexioaEgin();
              PreparedStatement pst = conn.prepareStatement(sqlEskaera)) {
-            pst.setInt(1, eskaera);
+            pst.setInt(1, fakturaZenbakia);
             try (ResultSet rs = pst.executeQuery()) {
                 if (rs.next()) {
                     fraZkia = rs.getString("idFaktura");
-                    bezeroaId = rs.getInt("idBazkidea");
+                    idBazkidea = rs.getInt("idBazkidea");
                     totala = rs.getDouble("totala");
 
                 } else {
@@ -49,18 +49,16 @@ public class fakturaEskaera {
         }
 
         // Obtener datos del cliente
-        String sqlBezeroa = "SELECT nanEdoNif, izena, abizena, helbidea, herria, postaKodea FROM bezeroa WHERE idBezeroa = ?";
+        String sqlBezeroa = "SELECT nan, izena, abizenak FROM bazkidea WHERE idBazkidea = ?";
         try (Connection conn = DBKonexioa.konexioaEgin();
              PreparedStatement pst = conn.prepareStatement(sqlBezeroa)) {
-            pst.setInt(1, bezeroaId);
+            pst.setInt(1, idBazkidea);
             try (ResultSet rs = pst.executeQuery()) {
                 if (rs.next()) {
-                    nanEdoNif = rs.getString("nanEdoNif");
+                    nanEdoNif = rs.getString("nan");
                     izena = rs.getString("izena");
-                    abizena = rs.getString("abizena");
-                    helbidea = rs.getString("helbidea");
-                    herria = rs.getString("herria");
-                    postaKodea = rs.getString("postaKodea");
+                    abizena = rs.getString("abizenak");
+                    
                 }
             }
         }catch (SQLException e) {
@@ -89,14 +87,10 @@ public class fakturaEskaera {
             edukia.showText(izena + " " + abizena);
             edukia.newLineAtOffset(0, -20);
             edukia.showText(nanEdoNif);
-            edukia.newLineAtOffset(0, -20);
-            edukia.showText(helbidea);
-            edukia.newLineAtOffset(0, -20);
-            edukia.showText(herria + " (" + postaKodea + ")");
             edukia.endText();
 
             float pageWidth = orria.getMediaBox().getWidth();
-            String[] empresaInfo = {"LarrunArri elkartea ", "B12345678", "Jose Arana Kalea, 9", "Ordizia (20240)"};
+            String[] empresaInfo = {"LarrunArri elkartea ", "C23456789", "Jose Arana Kalea, 9", "Ordizia (20240)"};
 
             float yOffset = orria.getMediaBox().getHeight() - 100;
             for (String line : empresaInfo) {
@@ -120,7 +114,7 @@ public class fakturaEskaera {
             edukia.showText(String.format("%-35.35s %10.10s %10.10s %10.10s",
                     "Produktua", "Kopurua", "Prezioa/U", "Totala"));
             edukia.endText();
-            String sqlProduktuak = "SELECT ep.idProduktua, ep.kopurua, ep.prezioa, ep.totala, p.marka, p.modeloa FROM eskaeraproduktua ep JOIN produktua p ON ep.idProduktua = p.idProduktua WHERE ep.fraZkia = ?";
+            String sqlProduktuak = "SELECT k.idProduktua, p.izena, k.kopurua, p.salmentaPrezioa, k.totala FROM kontsumizioak k JOIN produktua p ON k.idProduktua = p.idProduktua WHERE k.idFaktura = ?";
             try (Connection conn = DBKonexioa.konexioaEgin();
                  PreparedStatement pst = conn.prepareStatement(sqlProduktuak)) {
                 pst.setString(1, fraZkia);
@@ -131,9 +125,9 @@ public class fakturaEskaera {
                         edukia.setFont(PDType1Font.COURIER, 12);
                         edukia.newLineAtOffset(50, yPosition);
                         edukia.showText(String.format("%-35.35s %10.10s %10.2f€ %10.2f€",
-                                rs.getString("marka") + " " + rs.getString("modeloa"),
+                                rs.getString("izena"),
                                 rs.getInt("kopurua"),
-                                rs.getDouble("prezioa"),
+                                rs.getDouble("salmentaPrezioa"),
                                 rs.getDouble("totala")));
                         edukia.endText();
                         yPosition -= 20;
@@ -183,26 +177,13 @@ public class fakturaEskaera {
             }
 
             edukia.close();
-            String localFilePath = "C:\\Users\\anere\\OneDrive - Goierri Eskola\\Escritorio\\UTechJava\\JAVA\\2Erronka\\resources\\fakturak\\faktura_" + fraZkia.replace("/", "_") + ".pdf";
+            String localFilePath = "C:\\Users\\anere\\OneDrive - Goierri Eskola\\Escritorio\\ELKARGUNE\\ELKARGUNE JAVA\\ElkarGune_JAVA\\fakturak\\faktura_" + fraZkia + ".pdf";
             dokumentua.save(localFilePath);
             dokumentua.close();            
             dokumentua.close();
             System.out.println("Faktura sortu da: faktura_" + fraZkia + ".pdf");
 
-         // Subir el archivo al servidor FTP
-            String server = "172.16.237.119";
-            int port = 21;
-            String user = "ERRONKA";
-            String pass = "3Taldea3";
-            String remoteFilePath = "ERRONKA";
-            
-
-            boolean uploadSuccess = FTPUploader.uploadFile(server, port, user, pass, localFilePath, remoteFilePath, fraZkia);
-            if (uploadSuccess) {
-                System.out.println("✅ Archivo subido correctamente al servidor FTP.");
-            } else {
-                System.out.println("❌ Error al subir el archivo al servidor FTP.");
-            }
+         // 
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("Error al crear el PDF: " + e.getMessage());

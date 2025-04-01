@@ -6,13 +6,18 @@ import java.awt.EventQueue;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.List;
+import java.util.Optional;
+
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
-
+import eragiketak.aldaketaEspazioak;
 import kudeaketak.kudeaketaFakturak;
+import objetuak.Espazioa;
 import objetuak.Fakturak;
 import taulak.FakturakTaula;
+import eragiketak.fakturaEskaera;
+
 
 
 
@@ -22,6 +27,7 @@ public class FakturakPanela extends JFrame {
 	private JPanel contentPane;
 	private JTable table;
 	private kudeaketaFakturak dao;
+	private JTextField txt_id;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(() -> {
@@ -84,6 +90,11 @@ public class FakturakPanela extends JFrame {
 			}
 		});
 		contentPane.add(birkargatuIko);
+		
+		txt_id = new JTextField();
+		txt_id.setBounds(450, 674, 637, 20);
+		contentPane.add(txt_id);
+		txt_id.setColumns(10);
 				
 				JLabel lblAtzera = new JLabel("");
 				lblAtzera.setBounds(26, 27, 147, 49);
@@ -97,13 +108,41 @@ public class FakturakPanela extends JFrame {
 						p.setVisible(true);
 					}
 				});
-				
-						JLabel lblFondoa = new JLabel("");
-						lblFondoa.setIcon(new ImageIcon(FakturakPanela.class.getResource("/media/FONDOAK_errekarga.png")));
-						lblFondoa.setBounds(0, 0, 1538, 735);
-						contentPane.add(lblFondoa);
-
-	}
+						
+						JLabel lblAldatu = new JLabel("");
+						lblAldatu.setBounds(387, 662, 53, 50);
+						lblAldatu.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+						contentPane.add(lblAldatu);
+						lblAldatu.addMouseListener(new MouseAdapter () {
+							@Override
+				            public void mouseClicked(MouseEvent e) {
+				                // ID-a hartu
+				                try {
+				                    int idFaktura = Integer.parseInt(txt_id.getText());
+				                    // Mezua bilatu ID-a erabiliz
+				                    Optional<Fakturak> fakturakOpt = lortuFakturaIdarekin(idFaktura);
+				                    
+				                    if (fakturakOpt.isPresent()) {
+				                    	kudeaketaFakturak kf = new kudeaketaFakturak();
+				                    	kf.eguneratuFakturak(idFaktura);
+				                    	fakturaEskaera fe = new fakturaEskaera();
+				                    	fe.sortuFaktura(idFaktura);
+				                    	
+				                        //Fakturak faktura = fakturakOpt.get();
+				                        // Hornitzailea aurkitu bada, datuak pasatzea eta AldaketaHornitzaileak erakustea
+				                        actualizarTabla();
+				                        txt_id.setText("");
+				                    } else {
+				                        // Hornitzailea ez bada aurkitu, errore-mezua erakutsi
+				                        JOptionPane.showMessageDialog(null, "Faktura ez da aurkitu ID honekin: " + idFaktura, "Errorea", JOptionPane.ERROR_MESSAGE);
+				                    }
+				                } catch (NumberFormatException ex) {
+				                    JOptionPane.showMessageDialog(null, "ID-a zenbaki baliodun bat izan behar du.", "Errorea", JOptionPane.ERROR_MESSAGE);
+				                }
+				            }
+							
+					});
+						}
 
 	private void actualizarTabla() {
 		List<Fakturak> lista = dao.lortuFakturak();
@@ -117,22 +156,9 @@ public class FakturakPanela extends JFrame {
 			table.setModel(model);
 		}
 	}
-
-	/*private Optional<Fakturak> lortuBazkideaIdarekin(int idFaktura) {
+	private Optional<Fakturak> lortuFakturaIdarekin(int idFaktura) {
 		return dao.lortuFakturak().stream().filter(faktura -> faktura.getIdFaktura() == idFaktura).findFirst();
 	}
-
-	private void ezabatuBazkidea(int idBazkidea) {
-		boolean isDeleted = dao.ezabatuBazkidea(idBazkidea);
-		if (!isDeleted) {
-			txt_id.setText("");
-			JOptionPane.showMessageDialog(null, "Errore bat gertatu da. Bazkidea ezin izan da ezabatu.", "Errorea",
-					JOptionPane.ERROR_MESSAGE);
-		} else {
-			txt_id.setText("");
-			JOptionPane.showMessageDialog(null, "Bazkidea ezabatua izan da.");
-		}
-	}*/
 }
 
 

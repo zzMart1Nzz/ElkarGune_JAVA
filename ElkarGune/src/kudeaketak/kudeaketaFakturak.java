@@ -42,7 +42,7 @@ public class kudeaketaFakturak {
             rs.getString("fakturaPDF")
         );
     }
-}
+
 
     /*public void sortuFaktura(Fakturak fakturak) {
         String sql = "INSERT INTO faktura (idBazkidea, erreserbaZkia, data, fakturaPDF) VALUES (?, ?, ?, ?)";
@@ -54,21 +54,21 @@ public class kudeaketaFakturak {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-    }
+    }*/
 
-    public void eguneratuFakturak(Fakturak fakturak) {
-        String sql = "UPDATE fakturak SET idBazkidea = ?, erreserbaZkia = ? WHERE idErreserbaElementua = ?";
+    public void eguneratuFakturak(int idFaktura) {
+        String sql = "UPDATE fakturak SET egoera = true WHERE idFaktura = ?";
 
         try (Connection conn = DBKonexioa.konexioaEgin();
              PreparedStatement ps = conn.prepareStatement(sql)) {
-            mapErreserbaElementuaToPreparedStatement(erreserbaElementua, ps);
-            ps.setInt(3, erreserbaElementua.getIdErreserba());  // Establecemos el ID para la actualización
+            ps.setInt(1, idFaktura);  // Establecemos el ID para la actualización
             ps.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }}
 
-
+/*
     // Método para eliminar un producto de la base de datos
     public boolean ezabatuErreserba(int idErreserbaElementua) {
         String sql = "DELETE FROM erreserbaelementua WHERE idErreserbaElementua = ?";
