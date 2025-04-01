@@ -9,16 +9,18 @@ public class Fakturak {
 	private int erreserbaZkia;
 	private Timestamp data;
 	private double totala;
+	private boolean egoera;
 	private String fakturaPDF;
 	
 	//KONSTRUKTOREAK
 	public Fakturak(int idFaktura, int idBazkidea, int erreserbaZkia, Timestamp data, double totala,
-			String fakturaPDF) {
+			boolean egoera, String fakturaPDF) {
 		this.idFaktura = idFaktura;
 		this.idBazkidea = idBazkidea;
 		this.erreserbaZkia = erreserbaZkia;
 		this.data = data;
 		this.totala = totala;
+		this.egoera = egoera;
 		this.fakturaPDF = fakturaPDF;
 	}
 	
@@ -63,6 +65,17 @@ public class Fakturak {
 	public void setTotala(double totala) {
 		this.totala = totala;
 	}
+	
+
+	public boolean isEgoera() {
+		return egoera;
+	}
+
+
+	public void setEgoera(boolean egoera) {
+		this.egoera = egoera;
+	}
+
 
 	public String getFakturaPDF() {
 		return fakturaPDF;

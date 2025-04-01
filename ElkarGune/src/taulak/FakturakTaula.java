@@ -11,7 +11,7 @@ public class FakturakTaula extends AbstractTableModel {
 
     private List<Fakturak> fakturak;
     private String[] columnNames = {
-        "idFaktura", "idBazkidea", "ErreserbaZkia", "Data", "Totala", "FakturaPDF"
+        "idFaktura", "idBazkidea", "ErreserbaZkia", "Data", "Totala","Ordainduta", "FakturaPDF"
     };
 
     public FakturakTaula(List<Fakturak> fakturak) {
@@ -37,7 +37,8 @@ public class FakturakTaula extends AbstractTableModel {
             case 2: return fa.getErreserbaZkia();
             case 3: return new SimpleDateFormat("yyyy/MM/dd").format(fa.getData());
             case 4: return fa.getTotala();
-            case 5: return fa.getFakturaPDF();
+            case 5: return fa.isEgoera();
+            case 6:	return fa.getFakturaPDF();
             default: return null;
         }
     }

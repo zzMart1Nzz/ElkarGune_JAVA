@@ -7,7 +7,28 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/benat/OneDrive/Desktop/ERRONKAK/ERRONKA2/mysql-connector-j-9.2.0/mysql-connector-j-9.2.0.jar">
+	<classpathentry kind="lib" path="C:/Users/anere/OneDrive - Goierri Eskola/Escritorio/ELKARGUNE/ELKARGUNE JAVA/ElkarGune_JAVA/ElkarGune/resources/conectores/mysql-connector-j-9.2.0.jar">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/anere/OneDrive - Goierri Eskola/Escritorio/ELKARGUNE/ELKARGUNE JAVA/ElkarGune_JAVA/ElkarGune/resources/conectores/commons-logging-1.2.jar">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/anere/OneDrive - Goierri Eskola/Escritorio/ELKARGUNE/ELKARGUNE JAVA/ElkarGune_JAVA/ElkarGune/resources/conectores/commons-net-3.11.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/anere/OneDrive - Goierri Eskola/Escritorio/ELKARGUNE/ELKARGUNE JAVA/ElkarGune_JAVA/ElkarGune/resources/conectores/fontbox-2.0.19.jar">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/anere/OneDrive - Goierri Eskola/Escritorio/ELKARGUNE/ELKARGUNE JAVA/ElkarGune_JAVA/ElkarGune/resources/conectores/pdfbox-2.0.19.jar">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/anere/OneDrive - Goierri Eskola/Escritorio/ELKARGUNE/ELKARGUNE JAVA/ElkarGune_JAVA/ElkarGune/resources/conectores/pdfbox-tools-2.0.19.jar">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
