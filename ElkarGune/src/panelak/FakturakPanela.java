@@ -113,6 +113,11 @@ public class FakturakPanela extends JFrame {
 						lblAldatu.setBounds(387, 662, 53, 50);
 						lblAldatu.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 						contentPane.add(lblAldatu);
+						
+						JLabel lblFondoa = new JLabel("");
+						lblFondoa.setIcon(new ImageIcon(FakturakPanela.class.getResource("/media/FONDOAK_soloE.png")));
+						lblFondoa.setBounds(0, 0, 1538, 735);
+						contentPane.add(lblFondoa);
 						lblAldatu.addMouseListener(new MouseAdapter () {
 							@Override
 				            public void mouseClicked(MouseEvent e) {

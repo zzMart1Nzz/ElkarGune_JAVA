@@ -13,6 +13,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.WindowConstants;
 import javax.swing.border.EmptyBorder;
+import eragiketak.cSharpIreki;
 
 public class Printzipala extends JFrame {
 
@@ -231,10 +232,7 @@ public class Printzipala extends JFrame {
 				int erantzuna = JOptionPane.showOptionDialog(null, "Saioa itxi nahi duzu?", "SAIOA ITXI", JOptionPane.YES_NO_OPTION,
 						+ JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
 				if(erantzuna == JOptionPane.YES_OPTION) {
-				dispose();
-
-				LoginPanela log = new LoginPanela();
-				log.setVisible(true);
+					cSharpIreki.ejekutatu();
 				}else {}
 			}
 		});
