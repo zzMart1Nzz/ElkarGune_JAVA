@@ -8,7 +8,11 @@ import objetuak.Hornitzailea;
 
 public class HornitzaileakTaula extends AbstractTableModel {
 
-    private List<Hornitzailea> hornitzailea;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private List<Hornitzailea> hornitzailea;
     private String[] columnNames = {
         "idHornitzailea", "Izena", "NIF", "Helbidea", "Telefonoa", "Email"
     };

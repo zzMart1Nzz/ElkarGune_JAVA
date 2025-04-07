@@ -8,7 +8,11 @@ import objetuak.Produktua;
 
 public class ProduktuakTaula extends AbstractTableModel {
 
-    private List<Produktua> produktua;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private List<Produktua> produktua;
     private String[] columnNames = {
         "idProduktia", "Kategoria", "Izena", "Erosketa Prezioa", "Salmenta Prezioa", "Stock", "idHornitzailea"
     };

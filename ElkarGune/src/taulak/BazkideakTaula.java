@@ -7,7 +7,11 @@ import objetuak.Bazkidea;
 
 public class BazkideakTaula extends AbstractTableModel {
 
-    private List<Bazkidea> bazkidea;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private List<Bazkidea> bazkidea;
     private String[] columnNames = {
         "idBazkidea", "NAN", "Izena", "Abizena", "Erabiltzailea", "Pasahitza", "Telefonoa", "Email", "KontuKorrontea", "Mota", "InskripzioData"
     };

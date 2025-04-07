@@ -73,6 +73,19 @@ public class AbisuakPanela extends JFrame {
 				}
 			}
 		});
+		table.getSelectionModel().addListSelectionListener(e -> {
+			int filaVista = table.getSelectedRow();
+
+			if (filaVista != -1) {
+				// Si hay sorter o filtros aplicados, convertimos a índice del modelo
+				int filaModelo = table.convertRowIndexToModel(filaVista);
+
+				// Supongamos que queremos el valor de la columna 1 (segunda columna)
+				Object valor = table.getModel().getValueAt(filaModelo, 0);
+				txt_id.setText(valor != null ? valor.toString() : "");
+
+			}
+		});
 
 		JLabel birkargatuIko = new JLabel();
 		// No se especifica el icono

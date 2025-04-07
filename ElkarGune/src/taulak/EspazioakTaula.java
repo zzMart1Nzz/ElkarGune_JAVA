@@ -8,7 +8,11 @@ import objetuak.Espazioa;
 
 public class EspazioakTaula extends AbstractTableModel {
 
-    private List<Espazioa> espazioa;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private List<Espazioa> espazioa;
     private String[] columnNames = {
         "idEspazioa", "Izena", "Gaitasuna", "Egoera"
     };

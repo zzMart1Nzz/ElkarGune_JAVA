@@ -11,15 +11,10 @@ import java.util.Optional;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
-import eragiketak.aldaketaEspazioak;
 import kudeaketak.kudeaketaFakturak;
-import objetuak.Espazioa;
 import objetuak.Fakturak;
 import taulak.FakturakTaula;
 import eragiketak.fakturaEskaera;
-
-
-
 
 public class FakturakPanela extends JFrame {
 
@@ -58,8 +53,6 @@ public class FakturakPanela extends JFrame {
 		scrollPane.setBounds(175, 101, 1185, 527);
 		contentPane.add(scrollPane);
 
-
-
 		JLabel lblItxi = new JLabel("");
 		lblItxi.setBounds(1464, 17, 53, 59);
 		lblItxi.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -90,64 +83,76 @@ public class FakturakPanela extends JFrame {
 			}
 		});
 		contentPane.add(birkargatuIko);
-		
 		txt_id = new JTextField();
 		txt_id.setBounds(450, 674, 637, 20);
 		contentPane.add(txt_id);
 		txt_id.setColumns(10);
-				
-				JLabel lblAtzera = new JLabel("");
-				lblAtzera.setBounds(26, 27, 147, 49);
-				lblAtzera.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-				contentPane.add(lblAtzera);
-				lblAtzera.addMouseListener(new MouseAdapter () {
-					@Override
-					public void mouseClicked(MouseEvent e) {
-						dispose();
-						Printzipala p = new Printzipala();
-						p.setVisible(true);
+		JLabel lblAtzera = new JLabel("");
+		lblAtzera.setBounds(26, 27, 147, 49);
+		lblAtzera.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		contentPane.add(lblAtzera);
+		lblAtzera.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				dispose();
+				Printzipala p = new Printzipala();
+				p.setVisible(true);
+			}
+		});
+		table.getSelectionModel().addListSelectionListener(e -> {
+			int filaVista = table.getSelectedRow();
+
+			if (filaVista != -1) {
+				// Si hay sorter o filtros aplicados, convertimos a índice del modelo
+				int filaModelo = table.convertRowIndexToModel(filaVista);
+
+				// Supongamos que queremos el valor de la columna 1 (segunda columna)
+				Object valor = table.getModel().getValueAt(filaModelo, 0);
+				txt_id.setText(valor != null ? valor.toString() : "");
+
+			}
+		});
+		JLabel lblAldatu = new JLabel("");
+		lblAldatu.setBounds(237, 662, 203, 50);
+		lblAldatu.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		contentPane.add(lblAldatu);
+		JLabel lblFondoa = new JLabel("");
+		lblFondoa.setIcon(new ImageIcon(FakturakPanela.class.getResource("/media/FAKTURAK_PANELA.png")));
+		lblFondoa.setBounds(0, 0, 1538, 735);
+		contentPane.add(lblFondoa);
+		lblAldatu.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// ID-a hartu
+				try {
+					int idFaktura = Integer.parseInt(txt_id.getText());
+					// Mezua bilatu ID-a erabiliz
+					Optional<Fakturak> fakturakOpt = lortuFakturaIdarekin(idFaktura);
+					if (fakturakOpt.isPresent()) {
+						kudeaketaFakturak kf = new kudeaketaFakturak();
+						kf.eguneratuFakturak(idFaktura);
+						fakturaEskaera fe = new fakturaEskaera();
+						fe.sortuFaktura(idFaktura);
+						// Fakturak faktura = fakturakOpt.get();
+						// Hornitzailea aurkitu bada, datuak pasatzea eta AldaketaHornitzaileak
+						// erakustea
+						actualizarTabla();
+						txt_id.setText("");
+						JOptionPane.showMessageDialog(null, "Faktura sortu da!", "Faktura",
+								JOptionPane.INFORMATION_MESSAGE);
+
+					} else {
+						// Hornitzailea ez bada aurkitu, errore-mezua erakutsi
+						JOptionPane.showMessageDialog(null, "Faktura ez da aurkitu ID honekin: " + idFaktura, "Errorea",
+								JOptionPane.ERROR_MESSAGE);
 					}
-				});
-						
-						JLabel lblAldatu = new JLabel("");
-						lblAldatu.setBounds(387, 662, 53, 50);
-						lblAldatu.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-						contentPane.add(lblAldatu);
-						
-						JLabel lblFondoa = new JLabel("");
-						lblFondoa.setIcon(new ImageIcon(FakturakPanela.class.getResource("/media/FONDOAK_soloE.png")));
-						lblFondoa.setBounds(0, 0, 1538, 735);
-						contentPane.add(lblFondoa);
-						lblAldatu.addMouseListener(new MouseAdapter () {
-							@Override
-				            public void mouseClicked(MouseEvent e) {
-				                // ID-a hartu
-				                try {
-				                    int idFaktura = Integer.parseInt(txt_id.getText());
-				                    // Mezua bilatu ID-a erabiliz
-				                    Optional<Fakturak> fakturakOpt = lortuFakturaIdarekin(idFaktura);
-				                    
-				                    if (fakturakOpt.isPresent()) {
-				                    	kudeaketaFakturak kf = new kudeaketaFakturak();
-				                    	kf.eguneratuFakturak(idFaktura);
-				                    	fakturaEskaera fe = new fakturaEskaera();
-				                    	fe.sortuFaktura(idFaktura);
-				                    	
-				                        //Fakturak faktura = fakturakOpt.get();
-				                        // Hornitzailea aurkitu bada, datuak pasatzea eta AldaketaHornitzaileak erakustea
-				                        actualizarTabla();
-				                        txt_id.setText("");
-				                    } else {
-				                        // Hornitzailea ez bada aurkitu, errore-mezua erakutsi
-				                        JOptionPane.showMessageDialog(null, "Faktura ez da aurkitu ID honekin: " + idFaktura, "Errorea", JOptionPane.ERROR_MESSAGE);
-				                    }
-				                } catch (NumberFormatException ex) {
-				                    JOptionPane.showMessageDialog(null, "ID-a zenbaki baliodun bat izan behar du.", "Errorea", JOptionPane.ERROR_MESSAGE);
-				                }
-				            }
-							
-					});
-						}
+				} catch (NumberFormatException ex) {
+					JOptionPane.showMessageDialog(null, "ID-a zenbaki baliodun bat izan behar du.", "Errorea",
+							JOptionPane.ERROR_MESSAGE);
+				}
+			}
+		});
+	}
 
 	private void actualizarTabla() {
 		List<Fakturak> lista = dao.lortuFakturak();
@@ -161,9 +166,8 @@ public class FakturakPanela extends JFrame {
 			table.setModel(model);
 		}
 	}
+
 	private Optional<Fakturak> lortuFakturaIdarekin(int idFaktura) {
 		return dao.lortuFakturak().stream().filter(faktura -> faktura.getIdFaktura() == idFaktura).findFirst();
 	}
 }
-
-

@@ -1,0 +1,5 @@
+Manifest-Version: 1.0
+Rsrc-Class-Path: ./ mysql-connector-j-9.2.0.jar commons-logging-1.2.jar 
+commons-net-3.11.1.jar fontbox-2.0.19.jar pdfbox-2.0.19.jar pdfbox-tools-2.0.19.jar
+Class-Path: .
+Main-Class: panelak.Printzipala

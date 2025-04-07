@@ -5,8 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DecimalFormat;
-
-
+import java.nio.file.Paths;
 
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
@@ -26,7 +25,7 @@ public class fakturaEskaera {
         double totala = 0.0;
 
         // Datos del cliente
-        String nanEdoNif = "", izena = "", abizena = "", helbidea = "", herria = "", postaKodea = "";
+        String nanEdoNif = "", izena = "", abizena = "";
         // Obtener datos de la factura
         String sqlEskaera = "SELECT idFaktura, idBazkidea, totala FROM fakturak WHERE idFaktura = ?";
         try (Connection conn = DBKonexioa.konexioaEgin();
@@ -177,11 +176,12 @@ public class fakturaEskaera {
             }
 
             edukia.close();
-            String localFilePath = "C:\\Users\\anere\\OneDrive - Goierri Eskola\\Escritorio\\ELKARGUNE\\ELKARGUNE JAVA\\ElkarGune_JAVA\\fakturak\\faktura_" + fraZkia + ".pdf";
+            String currentDir = Paths.get("").toAbsolutePath().toString();
+            String localFilePath = Paths.get(currentDir, "Fakturak", "faktura_" + fraZkia + ".pdf").toString();
             dokumentua.save(localFilePath);
             dokumentua.close();            
             dokumentua.close();
-            System.out.println("Faktura sortu da: faktura_" + fraZkia + ".pdf");
+            //System.out.println("Faktura sortu da: faktura_" + fraZkia + ".pdf"+ localFilePath +".");
 
          // 
         } catch (Exception e) {

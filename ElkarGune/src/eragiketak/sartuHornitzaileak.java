@@ -1,14 +1,10 @@
 package eragiketak;
 
 import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -126,11 +122,6 @@ public class sartuHornitzaileak extends JFrame {
 
                 if (konfirmazioa == JOptionPane.YES_OPTION) {
                     // Testu-kampoetatik balioak lortu
-                    String nif = txt_nif.getText();
-                    String izena = txt_izena.getText();
-                    String helbidea = txt_helbidea.getText();
-                    String telefonoZkia = txt_telefonoa.getText();
-                    String postaElektronikoa = txt_postaElektronikoa.getText();
 
 
                     // Mezua eguneratzea

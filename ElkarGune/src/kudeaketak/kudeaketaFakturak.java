@@ -14,7 +14,7 @@ public class kudeaketaFakturak {
 
     public List<Fakturak> lortuFakturak() {
         List<Fakturak> lista = new ArrayList<>();
-        String sql = "SELECT idFaktura, idBazkidea, erreserbaZkia, data, totala, egoera, fakturaPDF " +
+        String sql = "SELECT idFaktura, idBazkidea, erreserbaZkia, data, totala, egoera " +
                      "FROM fakturak ORDER BY idFaktura ASC";
 
         try (Connection conn = DBKonexioa.konexioaEgin();
@@ -38,8 +38,7 @@ public class kudeaketaFakturak {
             rs.getInt("erreserbaZkia"),
             rs.getTimestamp("data"),
             rs.getDouble("totala"),
-            rs.getBoolean("egoera"),
-            rs.getString("fakturaPDF")
+            rs.getBoolean("egoera")
         );
     }
 

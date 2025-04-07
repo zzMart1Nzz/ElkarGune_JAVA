@@ -9,7 +9,11 @@ import objetuak.Abisuak;
 
 public class AbisuakTaula extends AbstractTableModel {
 
-    private List<Abisuak> abisuak;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private List<Abisuak> abisuak;
     private String[] columnNames = {
         "idAbisua", "Mezua", "Data"
     };

@@ -1,13 +1,10 @@
 package eragiketak;
 
 import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -19,14 +16,17 @@ import javax.swing.border.EmptyBorder;
 
 import objetuak.Mezuak;
 import panelak.MezuakPanela;
-import kudeaketak.kudeaketaAbisuak;
 import kudeaketak.kudeaketaMezuak;
 
 import java.awt.Color;
 import java.awt.Cursor;
 
 public class aldaketaMezuak extends JFrame {
-    private JPanel contentPane;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private JPanel contentPane;
     private JTextField txt_mezua;
     private JLabel lblFondoa;
     private JLabel okIkonoa;

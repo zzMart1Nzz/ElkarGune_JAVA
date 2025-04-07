@@ -1,6 +1,5 @@
 package taulak;
 
-import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.swing.table.AbstractTableModel;
@@ -9,7 +8,11 @@ import objetuak.Kontsumizioak;
 
 public class KontsumizioakTaula extends AbstractTableModel {
 
-    private List<Kontsumizioak> kontsumizioak;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private List<Kontsumizioak> kontsumizioak;
     private String[] columnNames = {
         "idKontsumizioa", "ErreserbaZkia", "idFaktura", "idBodega", "Kopurua", "Prezioa", "Totala"
     };

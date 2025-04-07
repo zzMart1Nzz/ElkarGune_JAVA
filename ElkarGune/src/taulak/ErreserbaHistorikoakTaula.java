@@ -9,7 +9,11 @@ import objetuak.ErreserbaHistorikoa;
 
 public class ErreserbaHistorikoakTaula extends AbstractTableModel {
 
-    private List<ErreserbaHistorikoa> erreserbHist;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private List<ErreserbaHistorikoa> erreserbHist;
     private String[] columnNames = {
         "idErreserbaHistorikoa", "idBazkidea", "Mota", "Data"
     };

@@ -9,7 +9,11 @@ import objetuak.Erreserba;
 
 public class ErreserbakTaula extends AbstractTableModel {
 
-    private List<Erreserba> erreserba;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private List<Erreserba> erreserba;
     private String[] columnNames = {
         "idErreserba", "idBazkidea", "Mota", "Data"
     };

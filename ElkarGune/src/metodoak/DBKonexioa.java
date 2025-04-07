@@ -5,14 +5,14 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DBKonexioa {
-    //private static final String ERABILTZAILEA = "java";
-    //private static final String PASAHITZA = "1mg3";
-    //private static final String DB = "elkargune";
-    //private static final String URL = "jdbc:mysql://172.16.237.119:3306/" + DB + "?useSSL=false&serverTimezone=UTC";
-    private static final String ERABILTZAILEA = "root";
-    private static final String PASAHITZA = "1MG2024";
+    private static final String ERABILTZAILEA = "java";
+    private static final String PASAHITZA = "1mg3";
     private static final String DB = "elkargune";
-    private static final String URL = "jdbc:mysql://localhost:3306/" + DB + "?useSSL=false&serverTimezone=UTC";
+    private static final String URL = "jdbc:mysql://172.16.237.119:3306/" + DB + "?useSSL=false&serverTimezone=UTC";
+    //private static final String ERABILTZAILEA = "root";
+    //private static final String PASAHITZA = "1MG2024";
+    //private static final String DB = "elkargune";
+    //private static final String URL = "jdbc:mysql://localhost:3306/" + DB + "?useSSL=false&serverTimezone=UTC";
 
     private static Connection conn = null;
 
@@ -24,7 +24,6 @@ public class DBKonexioa {
         try {
             if (conn == null || conn.isClosed()) {
                 conn = DriverManager.getConnection(URL, ERABILTZAILEA, PASAHITZA);
-                System.out.println("Datu-basearekin konektatuta.");
             }
         } catch (SQLException e) {
             System.out.println("Datu-basearekin konektatzea huts egin du!");
@@ -38,7 +37,6 @@ public class DBKonexioa {
         try {
             if (conn != null && !conn.isClosed()) {
                 conn.close();
-                System.out.println("Datu-basearen konexioa itxi da.");
             }
         } catch (SQLException e) {
             System.out.println("Errorea konexioa ixtean.");

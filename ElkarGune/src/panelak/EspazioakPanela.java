@@ -55,7 +55,19 @@ public class EspazioakPanela extends JFrame {
 		scrollPane.setBounds(175, 101, 1185, 527);
 		contentPane.add(scrollPane);
 
+		table.getSelectionModel().addListSelectionListener(e -> {
+			int filaVista = table.getSelectedRow();
 
+			if (filaVista != -1) {
+				// Si hay sorter o filtros aplicados, convertimos a índice del modelo
+				int filaModelo = table.convertRowIndexToModel(filaVista);
+
+				// Supongamos que queremos el valor de la columna 1 (segunda columna)
+				Object valor = table.getModel().getValueAt(filaModelo, 0);
+				txt_id.setText(valor != null ? valor.toString() : "");
+
+			}
+		});
 
 		JLabel lblItxi = new JLabel("");
 		lblItxi.setBounds(1464, 17, 53, 59);

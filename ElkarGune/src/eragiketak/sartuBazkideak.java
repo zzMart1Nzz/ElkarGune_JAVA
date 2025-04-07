@@ -17,7 +17,7 @@ public class sartuBazkideak extends JFrame {
     private static final long serialVersionUID = 1L;
     private JTextField txt_kontuKorrontea, txt_nan, txt_izena, txt_abizena, txt_telefonoa, txt_email, txt_erabiltzailea, txt_pasahitza;
     private JCheckBox chk_admin;
-    private JLabel okIkonoa, lblFondoa, lblAtzera, lblAdmin;
+    private JLabel okIkonoa, lblFondoa, lblAtzera;
 
     // 🆕 Constructor sin parámetros
     public sartuBazkideak() {
